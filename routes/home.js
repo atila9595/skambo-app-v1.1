@@ -13,6 +13,21 @@ home_rotas.get('/', async(req, res) => {
     })
 
 })
+
+home_rotas.get('/login', async(req, res) => {
+
+    res.render('home/loginPage')
+
+
+})
+
+home_rotas.get('/addusuario', async(req, res) => {
+
+    res.render('home/add_usuario')
+
+
+})
+
 home_rotas.get('/list', async(req, res) => {
     await Produto.findAll({
         order: [
@@ -29,7 +44,7 @@ home_rotas.get('/list', async(req, res) => {
 home_rotas.get('/:id', (req, res) => {
     var id = req.params.id
     Produto.findByPk(id).then((produc) => {
-        res.status(200).json(produc)
+        res.render('home/interesse', { nome: produc.nome, img: produc.imagem, desc: produc.descricao })
     }).catch((erro) => {
         res.send('erro: ' + erro)
     })
