@@ -1,4 +1,4 @@
-var url = 'http://127.0.0.1:8081/prod/list'
+var url = 'http://127.0.0.1:8081/home/list'
 var produtoclient = async() => {
     try {
         const response = await fetch(url)
@@ -34,7 +34,7 @@ function show(produtos) {
         img.name = produtos[i].id
 
         var divRight = document.createElement('a');
-        divRight.href = 'prod/' + produtos[i].id
+        divRight.href = 'inte/' + produtos[i].id
         divRight.className = 'aproduto'
 
         divRight.appendChild(img);

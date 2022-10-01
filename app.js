@@ -7,6 +7,7 @@ const app = express()
 const user = require('./routes/user')
 const home = require('./routes/home')
 const prod = require('./routes/produto')
+const inte = require('./routes/interesse')
 const path = require('path')
     //const mongoose = require('mongoose')
 
@@ -33,6 +34,7 @@ app.use(express.static(path.join(__dirname, 'public')))
 app.use('/user', user)
 app.use('/home', home)
 app.use('/prod', prod)
+app.use('/inte', inte)
     //Outros
 const PORT = 8081
 app.listen(PORT, () => {
