@@ -34,6 +34,7 @@ function show(produtos) {
         img.name = produtos[i].id
 
         var divRight = document.createElement('a');
+        divRight.href = ''
         divRight.href = 'inte/' + produtos[i].id
         divRight.className = 'aproduto'
 

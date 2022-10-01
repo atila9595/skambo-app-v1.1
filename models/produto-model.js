@@ -14,6 +14,7 @@ const Produto = db.sequelize.define('produto', {
     imagem: {
         type: db.Sequelize.TEXT
     }
+
 })
 
 //Produto.sync({ force: true })

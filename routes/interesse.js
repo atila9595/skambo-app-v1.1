@@ -24,6 +24,16 @@ interesse_rotas.get('/:id', async(req, res) => {
 
 })
 
+interesse_rotas.get('troca/:id', async(req, res) => {
+    var id = req.params.id
+    Produto.findByPk(id).then((produc) => {
+
+    }).catch((erro) => {
+        res.send('erro: ' + erro)
+    })
+
+})
+
 
 
 module.exports = interesse_rotas
