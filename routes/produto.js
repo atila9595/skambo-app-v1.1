@@ -32,16 +32,45 @@ produto_rotas.get('/add-prod', (req, res) => {
 })
 
 produto_rotas.post('/new-prod', (req, res) => {
-    Produto.create({
-        nome: req.body.nomeproduto,
-        descricao: req.body.comentario,
-        categoria: req.body.categoria,
-        imagem: req.body.nomediv
-    }).then(() => {
-        res.render('produto/list-produt')
-    }).catch((erro) => {
-        res.send('erro: ' + erro)
-    })
+    var erros = []
+
+    var nomeproduto = req.body.nomeproduto
+    var comentario = req.body.comentario
+    var categoriaprod = req.body.categoria
+    var imgprod = req.body.nomediv
+
+    if (!nomeproduto || typeof nomeproduto == undefined || nomeproduto == null) {
+        erros.push({ texto: 'Nome inválido' })
+    }
+    if (nomeproduto.length < 2) {
+        erros.push({ texto: 'Nome do produto muito pequenos' })
+    }
+    if (!comentario || typeof comentario == undefined || comentario == null) {
+        erros.push({ texto: 'Descrição inválido' })
+    }
+    if (!categoriaprod || typeof categoriaprod == undefined || categoriaprod == null) {
+        erros.push({ texto: 'Categoria inválido' })
+    }
+    if (!imgprod || typeof imgprod == undefined || imgprod == null) {
+        erros.push({ texto: 'Imagem inválido' })
+    }
+    if (erros.length > 0) {
+        res.render('produto/add-produt', { erros: erros })
+    } else {
+        Produto.create({
+            nome: nomeproduto,
+            descricao: comentario,
+            categoria: categoriaprod,
+            imagem: imgprod
+        }).then(() => {
+            res.render('produto/list-produt')
+        }).catch((erro) => {
+            res.send('erro: ' + erro)
+        })
+
+    }
+
+
 
     //console.log(produ.nome + ' ' + produ.comentario + ' ' + produ.categoria + ' ' + produ.imagem)
     //+ ' ' + produ.nomediv

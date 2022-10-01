@@ -9,11 +9,28 @@ const home = require('./routes/home')
 const prod = require('./routes/produto')
 const inte = require('./routes/interesse')
 const path = require('path')
-    //const mongoose = require('mongoose')
+const session = require('express-session')
+const flash = require('connect-flash')
 
 
+//Configuração
 
+//sessão
+app.use(session({
+    secret: 'apptroca',
+    resave: true,
+    saveUninitialized: true
+}))
+app.use(flash())
 
+//middleware
+app.use((req, res, next) => {
+    res.locals.success_msg = req.flash('success_msg')
+    res.locals.error_msg = req.flash('error_msg')
+    next()
+})
+
+//cors
 app.use(cors())
     // Body Parser
 app.use(bodyParser.urlencoded({ extended: true }))
@@ -29,6 +46,7 @@ app.set('views', path.join(__dirname, 'views'));
 
 //public
 app.use(express.static(path.join(__dirname, 'public')))
+
 
 //Rotas
 app.use('/user', user)

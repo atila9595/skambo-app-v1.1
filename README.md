@@ -34,3 +34,7 @@ npm install --save mysql2
 
 npm install --save cors
 
+npm install --save express-session
+
+npm install --save connect-flash
+
