@@ -30,11 +30,12 @@ function show(produtos) {
 
         var img = document.createElement('img'); // Create an <img> element.
         img.src = produtos[i].imagem; // The image source from JSON array.
-        img.className = "imgProdutoHome2"
+        img.className = "imgProdutoHome"
         img.name = produtos[i].id
 
         var divRight = document.createElement('a');
         divRight.href = 'prod/' + produtos[i].id
+        divRight.className = 'aproduto'
 
         divRight.appendChild(img);
         // Add the child DIVs to parent DIV.

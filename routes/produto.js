@@ -49,8 +49,8 @@ produto_rotas.post('/new-prod', (req, res) => {
 
 produto_rotas.get('/:id', (req, res) => {
     var id = req.params.id
-    Produto.findByPk(id).then((id) => {
-        res.render('produto/edit-produt', id)
+    Produto.findByPk(id).then((produc) => {
+        res.status(200).json(produc)
     }).catch((erro) => {
         res.send('erro: ' + erro)
     })
