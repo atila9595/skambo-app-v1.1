@@ -20,7 +20,7 @@ produtoclient()
 
 function show(produtos) {
 
-    var div = document.getElementById('container'); // The parent <div>.
+    var div = document.getElementById('cont'); // The parent <div>.
     div.innerHTML = '';
 
     for (i = 0; i <= produtos.length - 1; i++) {
