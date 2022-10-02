@@ -8,9 +8,9 @@ home_rotas.get('/', async(req, res) => {
         order: [
             ['id', 'DESC']
         ]
-    }).then((produc) => {
+    }).then(() => {
 
-        res.render('home/index', { img: produc[1].imagem })
+        res.render('home/index')
     })
 
 })
