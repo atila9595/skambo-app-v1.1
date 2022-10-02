@@ -18,4 +18,5 @@ const Interesse = db.sequelize.define('interesse', {
 
 //Produto.sync({ force: true })
 
+
 module.exports = Produto
