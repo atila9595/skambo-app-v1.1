@@ -1,7 +1,7 @@
 const db = require('./db')
 
 
-const Produto = db.sequelize.define('produto', {
+const Interesse = db.sequelize.define('interesse', {
     idinteressado: {
         type: db.Sequelize.STRING
     },

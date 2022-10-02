@@ -3,7 +3,7 @@ var produtoclient = async() => {
     try {
         const response = await fetch(url)
         const data = await response.json()
-            //console.log(data[0].imagem)
+        console.log(data[0].imagem)
 
         show(data)
 
@@ -47,5 +47,39 @@ function show(produtos) {
     }
 
 
+
+}
+
+
+
+var val = document.getElementById('validacao').value
+console.log(val)
+if (val == 'interesse') {
+    var id = document.getElementById('nomediv').value
+
+
+    var urlinteresse = 'http://127.0.0.1:8081/home/buscarUsuario/' + id
+    var usuarioApi = async() => {
+        try {
+            const response = await fetch(urlinteresse)
+            const data = await response.json()
+                //console.log(data[0].imagem)
+            console.log(data.nome)
+            show(data)
+
+
+        } catch (error) {
+
+        }
+
+    }
+
+    function show(usuario) {
+        document.getElementById("imguser").src = usuario.imguser;
+        document.getElementById("nomeuser").innerHTML = usuario.nome;
+        document.getElementById("linkprefil").href = 'home/'
+    }
+
+    usuarioApi()
 
 }

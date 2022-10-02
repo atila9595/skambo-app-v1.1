@@ -1,6 +1,7 @@
 const express = require('express')
 const home_rotas = express.Router()
 const Produto = require('../models/produto-model')
+const Usuario = require('../models/usuario-model')
 
 home_rotas.get('/', async(req, res) => {
     await Produto.findAll({
@@ -41,10 +42,42 @@ home_rotas.get('/list', async(req, res) => {
 
 })
 
+
+home_rotas.get('/buscarProduto/:id', async(req, res) => {
+    var id = req.params.id
+    await Produto.findByPk(id).then((produc) => {
+        nome = produc.nome
+        categoria = produc.categoria
+            //console.log(categoria + ' ' + nome)
+
+        return res.status(200).json(produc)
+
+    }).catch((erro) => {
+        return 'erro: ' + erro
+    })
+})
+
+home_rotas.get('/buscarUsuario/:id', async(req, res) => {
+    var id = req.params.id
+    await Usuario.findByPk(id).then((user) => {
+        usuario = {
+            id: user.id,
+            nome: user.nome,
+            email: user.email,
+            imguser: user.imguser
+        }
+        return res.status(200).json(usuario)
+
+    }).catch((erro) => {
+        res.send('erro: ' + erro)
+    })
+})
+
+
 home_rotas.get('/:id', (req, res) => {
     var id = req.params.id
     Produto.findByPk(id).then((produc) => {
-        res.render('home/interesse', { nome: produc.nome, img: produc.imagem, desc: produc.descricao })
+        res.render('home/interesse', { nome: produc.nome, img: produc.imagem, desc: produc.descricao, iduser: produc.usuario })
     }).catch((erro) => {
         res.send('erro: ' + erro)
     })
@@ -52,7 +85,6 @@ home_rotas.get('/:id', (req, res) => {
     //console.log(produ.nome + ' ' + produ.comentario + ' ' + produ.categoria + ' ' + produ.imagem)
     //+ ' ' + produ.nomediv
 })
-
 
 
 module.exports = home_rotas
