@@ -14,6 +14,9 @@ const Usuaro = db.sequelize.define('usuario', {
     admin: {
         type: db.Sequelize.INTEGER
     },
+    imguser: {
+        type: db.Sequelize.TEXT
+    }
 
 })
 

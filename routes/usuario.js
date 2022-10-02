@@ -5,9 +5,14 @@ user_rotas.get('/', (req, res) => {
     res.send("Pagina de usuario")
 })
 
-user_rotas.get('/test', (req, res) => {
+user_rotas.get('/index', (req, res) => {
     res.render('user/index')
 })
+
+user_rotas.post('/index', (req, res) => {
+    res.render('user/index')
+})
+
 
 
 

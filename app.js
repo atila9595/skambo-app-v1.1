@@ -4,7 +4,7 @@ const handlebars = require('express-handlebars')
 const bodyParser = require('body-parser')
 const cors = require('cors')
 const app = express()
-const user = require('./routes/user')
+const user = require('./routes/usuario')
 const home = require('./routes/home')
 const prod = require('./routes/produto')
 const inte = require('./routes/interesse')
@@ -36,6 +36,7 @@ app.use(cors())
 app.use(bodyParser.urlencoded({ extended: true }))
 app.use(bodyParser.json())
 
+
 // Handlebars
 app.engine('handlebars', handlebars.engine({ defaultLayout: 'main' }))
 app.set('view engine', 'handlebars')
@@ -46,7 +47,8 @@ app.set('views', path.join(__dirname, 'views'));
 
 //public
 app.use(express.static(path.join(__dirname, 'public')))
-
+app.use(express.json({ limit: '50mb' }));
+app.use(express.urlencoded({ limit: '50mb' }));
 
 //Rotas
 app.use('/user', user)

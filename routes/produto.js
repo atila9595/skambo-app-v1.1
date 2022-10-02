@@ -23,21 +23,22 @@ produto_rotas.get('/list', async(req, res) => {
 
         res.status(200).json(produc)
     })
-
-
 })
 
 produto_rotas.get('/add-prod', (req, res) => {
     res.render('produto/add-produt')
 })
 
-produto_rotas.post('/new-prod', (req, res) => {
-    var erros = []
-
+produto_rotas.post('/add-prod', (req, res) => {
     var nomeproduto = req.body.nomeproduto
     var comentario = req.body.comentario
     var categoriaprod = req.body.categoria
     var imgprod = req.body.nomediv
+    saveProduto(res, nomeproduto, comentario, categoriaprod, imgprod)
+})
+
+function saveProduto(res, nomeproduto, comentario, categoriaprod, imgprod) {
+    var erros = []
 
     if (!nomeproduto || typeof nomeproduto == undefined || nomeproduto == null) {
         erros.push({ texto: 'Nome inválido' })
@@ -63,18 +64,14 @@ produto_rotas.post('/new-prod', (req, res) => {
             categoria: categoriaprod,
             imagem: imgprod
         }).then(() => {
-            res.render('produto/list-produt')
+
+            res.render('home/index', { success_msg: 'Produto adicionado com sucesso!' })
         }).catch((erro) => {
-            res.send('erro: ' + erro)
+            console.log('erro: ' + erro)
+            res.render('home/index')
         })
-
     }
-
-
-
-    //console.log(produ.nome + ' ' + produ.comentario + ' ' + produ.categoria + ' ' + produ.imagem)
-    //+ ' ' + produ.nomediv
-})
+}
 
 produto_rotas.get('/:id', (req, res) => {
     var id = req.params.id
