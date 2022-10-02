@@ -1,6 +1,8 @@
 const express = require('express')
 const user_rotas = express.Router()
 const Usuario = require('../models/usuario-model')
+const passport = require("passport")
+
 
 user_rotas.get('/', (req, res) => {
     res.send("Pagina de usuario")
@@ -60,8 +62,14 @@ function saveUser(res, nomeuse, emailuse, passworduse, adminuse, imguser) {
     }
 }
 
+user_rotas.post('/loginPage', (req, res, next) => {
 
+    passport.authenticate("local", {
+        successRedirect: "/",
+        failureRedirect: "/home/loginPage",
+        failureFlash: true
+    })(req, res, next)
 
-
+})
 
 module.exports = user_rotas
