@@ -22,6 +22,8 @@ produto_rotas.get('/list', async(req, res) => {
     }).then((produc) => {
 
         res.status(200).json(produc)
+    }).catch((error) => {
+        console.log('o erro é : ' + error)
     })
 })
 
@@ -62,7 +64,9 @@ function saveProduto(res, nomeproduto, comentario, categoriaprod, imgprod) {
             nome: nomeproduto,
             descricao: comentario,
             categoria: categoriaprod,
-            imagem: imgprod
+            imagem: imgprod,
+            ativo: 1,
+            usuario: 1
         }).then(() => {
 
             res.render('home/index', { success_msg: 'Produto adicionado com sucesso!' })
