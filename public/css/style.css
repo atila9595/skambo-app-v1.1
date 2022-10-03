@@ -604,4 +604,8 @@ input[type="text"]::-webkit-input-placeholder {
   #opProduto{
     cursor: pointer;
   }
+
+  .aproduto {
+    margin-right: 10px;
+  }
   
