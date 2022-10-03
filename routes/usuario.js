@@ -2,6 +2,7 @@ const express = require('express')
 const user_rotas = express.Router()
 const Usuario = require('../models/usuario-model')
 const passport = require("passport")
+var bcrypy = require('bcryptjs');
 
 
 user_rotas.get('/', (req, res) => {
@@ -46,19 +47,43 @@ function saveUser(res, nomeuse, emailuse, passworduse, adminuse, imguser) {
     if (erros.length > 0) {
         res.render('home/add_usuario', { erros: erros })
     } else {
-        Usuario.create({
-            nome: nomeuse,
-            email: emailuse,
-            password: passworduse,
-            admin: adminuse,
-            imguser: imguser
-        }).then(() => {
+        Usuario.findOne({
+            where: { email: emailuse }
+        }).then((usuario) => {
+            if (usuario) {
+                console.log(usuario.email)
+                res.render('home/add_usuario', { error_msg: 'Já existe usuario com esse email!' })
+            } else {
+                bcrypy.genSalt(10, (erro, salt) => {
+                    bcrypy.hash(passworduse, salt, (erro, hash) => {
+                        if (erro) {
+                            res.render('home/', { error_msg: 'Houve um erro durante o salvamento do usuario!' })
+                        }
 
-            res.render('home/loginPage', { success_msg: 'Usuario adicionado com sucesso!' })
-        }).catch((erro) => {
-            console.log('erro: ' + erro)
-            res.render('home/addusuario')
+                        passworduse = hash
+
+                        Usuario.create({
+                            nome: nomeuse,
+                            email: emailuse,
+                            password: passworduse,
+                            admin: adminuse,
+                            imguser: imguser
+                        }).then(() => {
+
+                            res.render('home/loginPage', { success_msg: 'Usuario adicionado com sucesso!' })
+                        }).catch((erro) => {
+                            console.log('erro: ' + erro)
+                            res.render('home/addusuario')
+                        })
+
+                    })
+                })
+            }
+        }).catch((err) => {
+            res.render('home/add_usuario', { error_msg: 'erro interno na hora de cadastra user!' + err })
         })
+
+
     }
 }
 
