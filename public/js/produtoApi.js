@@ -51,9 +51,13 @@ function show(produtos) {
 }
 
 
-
+/*
 var val = document.getElementById('validacao').value
 console.log(val)
+
+
+
+
 if (val == 'interesse') {
     var id = document.getElementById('nomediv').value
 
@@ -83,3 +87,4 @@ if (val == 'interesse') {
     usuarioApi()
 
 }
+*/
