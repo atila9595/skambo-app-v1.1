@@ -82,19 +82,19 @@ function saveProduto(res, nomeproduto, comentario, categoriaprod, imgprod) {
 produto_rotas.get('/:id', (req, res) => {
     var id = req.params.id
     Produto.findByPk(id).then((produc) => {
-       Usuaro.findAll({attributes: attributes, raw: true,}).then(Usuaro => {console.table(Usuaro)})
-       console.log(Usuaro)
-        Produto.findAll({
-            raw: true,
-            attributes: attributes,
-            include: [{
-                model: Usuaro,
-                require: true,
-                attributes: ['name'],
-            }],
-            order: [['id', 'ASC']],
-        }).then(Produto => {console.table(Produto)})
-        console.log(Produto)
+        /*Usuaro.findAll({attributes: attributes, raw: true,}).then(Usuaro => {console.table(Usuaro)})
+        console.log(Usuaro)
+         Produto.findAll({
+             raw: true,
+             attributes: attributes,
+             include: [{
+                 model: Usuaro,
+                 require: true,
+                 attributes: ['name'],
+             }],
+             order: [['id', 'ASC']],
+         }).then(Produto => {console.table(Produto)})
+         console.log(Produto)*/
         res.status(200).json(produc)
     }).catch((erro) => {
         res.send('erro: ' + erro)

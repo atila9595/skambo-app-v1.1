@@ -91,7 +91,7 @@ user_rotas.post('/loginPage', (req, res, next) => {
 
     passport.authenticate("local", {
         successRedirect: "/home",
-        failureRedirect: "/home/loginPage",
+        failureRedirect: "/home/login",
         failureFlash: true
     })(req, res, next)
 
