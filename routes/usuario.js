@@ -65,7 +65,7 @@ function saveUser(res, nomeuse, emailuse, passworduse, adminuse, imguser) {
 user_rotas.post('/loginPage', (req, res, next) => {
 
     passport.authenticate("local", {
-        successRedirect: "/",
+        successRedirect: "/home",
         failureRedirect: "/home/loginPage",
         failureFlash: true
     })(req, res, next)
