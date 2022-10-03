@@ -3,16 +3,16 @@ const db = require('./db')
 
 const Interesse = db.sequelize.define('interesse', {
     idinteressado: {
-        type: db.Sequelize.STRING
+        type: db.Sequelize.INTEGER
     },
     idprodutointeressado: {
-        type: db.Sequelize.TEXT
+        type: db.Sequelize.INTEGER
     },
     iduser: {
-        type: db.Sequelize.STRING
+        type: db.Sequelize.INTEGER
     },
     idprodutouser: {
-        type: db.Sequelize.TEXT
+        type: db.Sequelize.INTEGER
     }
 })
 

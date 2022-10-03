@@ -97,4 +97,11 @@ user_rotas.post('/loginPage', (req, res, next) => {
 
 })
 
+user_rotas.get("/logout", (req, res) => {
+    req.logout(req.user, err => {
+        if (err) return next(err);
+        res.redirect("/home");
+    });
+});
+
 module.exports = user_rotas

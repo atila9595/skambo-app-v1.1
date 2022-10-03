@@ -28,6 +28,10 @@ home_rotas.get('/addusuario', async(req, res) => {
 
 
 })
+home_rotas.get('/cupons', async(req, res) => {
+
+    res.render('home/cupom')
+})
 
 home_rotas.get('/list', async(req, res) => {
     await Produto.findAll({
@@ -77,7 +81,7 @@ home_rotas.get('/buscarUsuario/:id', async(req, res) => {
 home_rotas.get('/:id', (req, res) => {
     var id = req.params.id
     Produto.findByPk(id).then((produc) => {
-        res.render('home/interesse', { nome: produc.nome, img: produc.imagem, desc: produc.descricao, iduser: produc.usuario })
+        res.render('home/interesse', { nome: produc.nome, img: produc.imagem, desc: produc.descricao, iduser: produc.usuario, idprod: produc.id })
     }).catch((erro) => {
         res.send('erro: ' + erro)
     })
@@ -85,6 +89,8 @@ home_rotas.get('/:id', (req, res) => {
     //console.log(produ.nome + ' ' + produ.comentario + ' ' + produ.categoria + ' ' + produ.imagem)
     //+ ' ' + produ.nomediv
 })
+
+
 
 
 module.exports = home_rotas

@@ -15,11 +15,21 @@
 
       <a style="margin-left: 4%"  href="/prod/add-prod"  ><img class="addPro" src="/img/add.png" alt=""></a>
       
-      <a style="margin-left: 3%" href="cupom.html"
-            ><img class="addPro" src="/prod/cupom" alt=""
+      <a style="margin-left: 3%" href="/home/cupons"
+            ><img class="addPro" src="/img/reward2.png" alt=""
         /></a>
   
 
+      {{#if user}}
+      <a href="/user/logout" style="margin-left: 2%" >
+          <img src="{{user.imguser}}" class="imgperfil" alt="">
+        </a>
+
+
+      <!---Colar um if se tiver logado muda para o p comentado abaixo-->
+      <!--<p href="perfilUsuario.html" style="color: #fff;text-decoration:none; float: right; margin-left: 1%;">Olá (nome do usuario)</p>-->
+      <a href="/user/logout" style="color: #fff;text-decoration:none; float: right; margin-left: 1%;">Sair</a> 
+      {{else}}
 
        <a href="/home/login" style="margin-left: 2%" >
           <img src="/img/iconuser.png" class="imgperfil" alt="">
@@ -28,7 +38,7 @@
       <!---Colar um if se tiver logado muda para o p comentado abaixo-->
       <!--<p href="perfilUsuario.html" style="color: #fff;text-decoration:none; float: right; margin-left: 1%;">Olá (nome do usuario)</p>-->
       <a href="/home/login" style="color: #fff;text-decoration:none; float: right; margin-left: 1%;">Entrar</a> 
-
+      {{/if}}
     </div>
 
 
