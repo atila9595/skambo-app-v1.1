@@ -33,6 +33,11 @@
 <body id="corFundo">
   
     {{>_navbar}}
+    {{#if error}}
+        <div class="alert alert-danger">{{error}}</div>
+    {{else}}
+
+    {{/if}}
     {{>_msg}}
     {{{body}}}
   

@@ -1,7 +1,9 @@
 const { json } = require('body-parser')
 const express = require('express')
+const db = require('../models/db')
 const produto_rotas = express.Router()
 const Produto = require('../models/produto-model')
+const Usuaro = require('../models/usuario-model')
 
 produto_rotas.get('/', async(req, res) => {
     await Produto.findAll({
@@ -80,6 +82,19 @@ function saveProduto(res, nomeproduto, comentario, categoriaprod, imgprod) {
 produto_rotas.get('/:id', (req, res) => {
     var id = req.params.id
     Produto.findByPk(id).then((produc) => {
+       Usuaro.findAll({attributes: attributes, raw: true,}).then(Usuaro => {console.table(Usuaro)})
+       console.log(Usuaro)
+        Produto.findAll({
+            raw: true,
+            attributes: attributes,
+            include: [{
+                model: Usuaro,
+                require: true,
+                attributes: ['name'],
+            }],
+            order: [['id', 'ASC']],
+        }).then(Produto => {console.table(Produto)})
+        console.log(Produto)
         res.status(200).json(produc)
     }).catch((erro) => {
         res.send('erro: ' + erro)
