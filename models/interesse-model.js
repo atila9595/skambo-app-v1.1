@@ -16,7 +16,7 @@ const Interesse = db.sequelize.define('interesse', {
     }
 })
 
-//Produto.sync({ force: true })
+//Interesse.sync({ force: true })
 
 
-module.exports = Produto
+module.exports = Interesse

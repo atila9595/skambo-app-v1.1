@@ -1,3 +1,6 @@
+<form action="/inte/{{idprod}}/{{iduser}}" method="post">
+  <input type="text" name="idusuario"style="display: none;" value="{{iduser}}">
+  <input type="text" name="idproduto"style="display: none;" value="{{idprod}}">
 <div class="cardProduto" style="margin-bottom: 3%; background-color: #fff; padding: 10px;">
         <div class="row" style="margin-top: 5%; margin-bottom: 5%; width: 100%;">
             <div class="col-md-6" style=" border-radius: 3%;"> 
@@ -21,9 +24,9 @@
                  <div class="row" style="text-align: center; justify-content: center; padding-top: 10%;">
                     
                 <div class="col-md-2" style="">
-                  <a href="/inter/{{idprod}}">
+                  <button type="submit">
                     <img src="/img/troca.png" class="btnTrocar" title="Iniciar processo Troca">
-                  </a>
+                  </button>
                 </div>
                 <input  name="nomediv" value="{{iduser}}" style="display: none;" id="nomediv" type="text">
                 <input   value="interesse" style="display: none;" id="validacao" >
@@ -33,7 +36,7 @@
         </div>
 
       </div>
-
+</form>
        <!---Falta colocar hover na foto com icone de curtir e titulo do produto-->
       <h2 style="text-align: center; margin-bottom: 3%; color: #fff">Produtos como esse </h2>
 
