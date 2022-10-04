@@ -16,34 +16,39 @@ var produtoclient = async() => {
 
 produtoclient()
 
-home = 'home/'
+
 
 function show(produtos) {
-
+    var rota = 'home/'
     var div = document.getElementById('cont'); // The parent <div>.
     div.innerHTML = '';
 
     for (i = 0; i <= produtos.length - 1; i++) {
 
         // Create two <div> elements, one for the name and the other to show the image.
-        home = ''
+
+
+        rota = rota + produtos[i].id
+
 
         var img = document.createElement('img'); // Create an <img> element.
         img.src = produtos[i].imagem; // The image source from JSON array.
         img.className = "imgProdutoHome"
         img.name = produtos[i].id
 
+
         var divRight = document.createElement('a');
-        divRight.href = home + produtos[i].id
+        divRight.href = rota
+        rota = 'home/'
         divRight.className = 'aproduto'
 
         divRight.appendChild(img);
         // Add the child DIVs to parent DIV.
 
         div.appendChild(divRight);
-        home = ''
-            // Note: Instead of <div>, you can also create a dynamic <table> to show the images. 
-            // Here's an example ... https://www.encodedna.com/javascript/populate-json-data-to-html-table-using-javascript.htm 
+
+        // Note: Instead of <div>, you can also create a dynamic <table> to show the images. 
+        // Here's an example ... https://www.encodedna.com/javascript/populate-json-data-to-html-table-using-javascript.htm 
     }
 
 
